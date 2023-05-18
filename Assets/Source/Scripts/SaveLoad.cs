@@ -81,6 +81,11 @@ public class SaveLoad : MonoBehaviour
             playerToInventory.Inventory[i].PutItemById(saveData.Inventory[i].ItemId, saveData.Inventory[i].Count);
         }
 
+        foreach (a_Enemy enemy in FindObjectsOfType<a_Enemy>())
+        {
+            Destroy(enemy.gameObject);
+        }
+
         _spawner.Spawn();
     }
 }

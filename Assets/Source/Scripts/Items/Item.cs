@@ -29,7 +29,9 @@ public class Item : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out PlayerToInventory playerToInventory))
         {
             if (playerToInventory.Inventory.Put(_itemData, _count))
+            {
                 Destroy(gameObject);
+            }
         }
     }
 }
