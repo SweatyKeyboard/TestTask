@@ -8,6 +8,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private float _shotDelay;
     [SerializeField] private Image _shotIcon;
 
+    [SerializeField] private Transform _playerTransform;
+
     private float _lastShotTime;
 
     private void Update()
@@ -26,7 +28,10 @@ public class Gun : MonoBehaviour
         if (Time.time > _lastShotTime + _shotDelay)
         {
             _lastShotTime = Time.time;
-            Instantiate(_bulletPrefab, _shotPos.position, transform.rotation);
+            Instantiate(
+                _bulletPrefab,
+                _shotPos.position,
+                transform.rotation * Quaternion.Euler(0,0, _playerTransform.localScale.x < 0 ? 180 : 0));
         }
 
     }

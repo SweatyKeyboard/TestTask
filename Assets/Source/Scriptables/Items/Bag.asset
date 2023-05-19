@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99ef3a5c3f5dd647a6c68e106b4f4eb, type: 3}
   m_Name: Bag
   m_EditorClassIdentifier: 
+  _id: 1
   _name: Bag
   _icon: {fileID: 21300000, guid: 93bce68c22ba2ed4592b0338ae2ac8fd, type: 3}
   _isStackable: 1

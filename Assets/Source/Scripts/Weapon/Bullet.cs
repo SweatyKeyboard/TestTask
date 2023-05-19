@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
     }
 
     private void Update()
-    {        
+    {
         _lifetime -= Time.deltaTime;
 
         if (_lifetime <= 0)
@@ -30,8 +30,8 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out a_Enemy enemy))
         {
             enemy.Hurt(_damage);
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 
 }

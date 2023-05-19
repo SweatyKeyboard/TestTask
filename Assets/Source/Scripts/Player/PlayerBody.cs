@@ -27,7 +27,7 @@ public class PlayerBody : MonoBehaviour
 
     private void RotateGunArmToTarget()
     {
-        Vector3 difference = _target.position - transform.position;
+        Vector3 difference = _target.position - _rightElbow.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         _rightElbow.rotation = Quaternion.Euler(0f, 0f, rotationZ + 90f);
     }

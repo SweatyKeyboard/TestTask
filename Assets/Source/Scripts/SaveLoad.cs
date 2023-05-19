@@ -23,17 +23,37 @@ public class InventorySlotSaveData
 public class SaveLoad : MonoBehaviour
 {
     [SerializeField] private EnemySpawner _spawner;
-    private void Update()
+
+    private string _path;
+
+    private void OnApplicationPause(bool isPaused)
     {
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (isPaused)
         {
+            Debug.Log("Pause");
             Save();
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.F2))
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
         {
-            Load();
+            Debug.Log("Focus");
+            Save();
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        Debug.Log("Quit");
+        Save();
+    }
+
+    private void Start()
+    {
+         _path = Application.persistentDataPath + "/save.dat";
+        Load();
     }
 
 
@@ -45,7 +65,6 @@ public class SaveLoad : MonoBehaviour
         saveData.PlayerPositionY = playerToInventory.transform.position.y;
         saveData.PlayerHealth = FindAnyObjectByType<PlayerHealth>().Health;
 
-        Debug.Log(playerToInventory.Inventory[0].ItemCount);
         for (int i = 0; i < 3; i++)
         {
             saveData.Inventory[i] = new();
@@ -54,7 +73,7 @@ public class SaveLoad : MonoBehaviour
         }
 
         BinaryFormatter binaryFormatter = new();
-        FileStream file = File.Create("./save.dat");
+        FileStream file = File.Create(_path);
         binaryFormatter.Serialize(file, saveData);
         file.Close();
     }
@@ -62,11 +81,11 @@ public class SaveLoad : MonoBehaviour
     public void Load()
     {
 
-        if (!File.Exists("./save.dat"))
+        if (!File.Exists(_path))
             return;
 
         BinaryFormatter binaryFormatter = new();
-        FileStream file = File.Open("./save.dat", FileMode.Open);
+        FileStream file = File.Open(_path, FileMode.Open);
         SaveData saveData = (SaveData)binaryFormatter.Deserialize(file);
         file.Close();
 
@@ -86,6 +105,6 @@ public class SaveLoad : MonoBehaviour
             Destroy(enemy.gameObject);
         }
 
-        _spawner.Spawn();
+        _spawner.Spawn(3);
     }
 }

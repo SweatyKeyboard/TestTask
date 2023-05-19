@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-
-    [SerializeField] private int _startEnemiesCount;
     [SerializeField] private a_Enemy[] _enemies;
 
 
@@ -19,11 +17,6 @@ public class EnemySpawner : MonoBehaviour
                 _spawnZoneWidth,
                 _spawnZoneHeight,
                 0));
-    }
-
-    private void Start()
-    {
-        Spawn(_startEnemiesCount);
     }
 
     public void Spawn(int count)

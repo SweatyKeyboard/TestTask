@@ -303,6 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e467d919ed8b041904a6a9cf135443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _allItemsIds: {fileID: 11400000, guid: 5e9dfb77712da934f9d402a34007171f, type: 2}
   _deleteButton: {fileID: 6266408727426124778}
   _countText: {fileID: 1444172609319965579}
   _itemIcon: {fileID: 7527265553676903138}
